@@ -17,7 +17,8 @@ const SCREENSHOTS = [
 ];
 
 // Configure the APK download URL variable here
-const DOWNLOAD_APP_URL = (import.meta as any).env?.VITE_DOWNLOAD_APP_URL || '/api/download/apk';
+const backendUrl = import.meta.env.VITE_API_URL || '';
+const DOWNLOAD_APP_URL = (import.meta as any).env?.VITE_DOWNLOAD_APP_URL || `${backendUrl}/api/download/apk`;
 
 export default function Download() {
   const [downloading, setDownloading] = useState(false);
