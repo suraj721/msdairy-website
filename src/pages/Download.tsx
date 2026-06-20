@@ -17,8 +17,9 @@ const SCREENSHOTS = [
 ];
 
 // Configure the APK download URL variable here
-const backendUrl = (import.meta as any).env?.VITE_API_URL || '';
-const DOWNLOAD_APP_URL = (import.meta as any).env?.VITE_DOWNLOAD_APP_URL || `${backendUrl}/api/download/apk`;
+const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+const backendUrl = isLocal ? '' : 'https://msdairy-backend.onrender.com';
+const DOWNLOAD_APP_URL = `${backendUrl}/api/download/apk`;
 
 export default function Download() {
   const [downloading, setDownloading] = useState(false);

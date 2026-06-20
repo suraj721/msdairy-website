@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const baseURL = (import.meta as any).env?.VITE_API_URL ? `${(import.meta as any).env.VITE_API_URL}/api` : '/api';
+const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+const baseURL = isLocal ? '/api' : 'https://msdairy-backend.onrender.com/api';
 const api = axios.create({ baseURL });
 
 api.interceptors.request.use(cfg => {
